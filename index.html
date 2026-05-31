@@ -3,23 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eleições 2024 — Vereadores | wabreu.com</title>
+<title>Wellington Abreu | wabreu.com</title>
 <style>
   :root {
     --azul: #1a2a4a;
     --ambar: #e8a020;
-    --verde-bg: #d4edda;
-    --verde-tx: #155724;
-    --cinza-alt: #f8f9fa;
     --borda: #dee2e6;
     --branco: #ffffff;
     --texto: #333333;
     --texto-suave: #666666;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: var(--texto); }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: var(--texto); min-height: 100vh; display: flex; flex-direction: column; }
 
-  /* HEADER */
   header {
     background: var(--azul);
     border-bottom: 3px solid var(--ambar);
@@ -27,7 +23,7 @@
     display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 8px;
   }
-  header h1 { color: #fff; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px; }
+  header h1 { color: #fff; font-size: 1.1rem; font-weight: 700; }
   header p  { color: #aac4e8; font-size: 0.78rem; margin-top: 2px; }
   .badge {
     background: var(--ambar); color: var(--azul);
@@ -35,157 +31,79 @@
     border-radius: 20px; white-space: nowrap;
   }
 
-  /* LAYOUT */
-  .container { display: flex; min-height: calc(100vh - 70px); }
+  .hero {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 48px 24px;
+  }
 
-  /* SIDEBAR */
-  aside {
-    width: 230px; min-width: 230px;
-    background: var(--azul);
-    padding: 20px 0;
-    display: flex; flex-direction: column;
-  }
-  aside h2 {
-    color: var(--ambar); font-size: 0.7rem; font-weight: 700;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 0 16px 12px; border-bottom: 1px solid rgba(255,255,255,0.1);
-    margin-bottom: 8px;
-  }
-  .mun-btn {
-    display: block; width: 100%;
-    background: none; border: none; cursor: pointer;
-    color: #c8d8ee; font-size: 0.85rem;
-    text-align: left; padding: 10px 16px;
-    border-left: 3px solid transparent;
-    transition: all 0.15s;
-  }
-  .mun-btn:hover { background: rgba(255,255,255,0.07); color: #fff; }
-  .mun-btn.ativo {
-    color: #fff; font-weight: 600;
-    border-left-color: var(--ambar);
-    background: rgba(232,160,32,0.12);
-  }
-  .mun-btn small { display: block; color: #7a9cc0; font-size: 0.72rem; margin-top: 2px; }
-  .mun-btn.ativo small { color: #f0c96a; }
-
-  /* MAIN */
-  main { flex: 1; padding: 24px; overflow-x: auto; }
-
-  /* TELA INICIAL */
-  .tela-inicial {
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    min-height: 60vh; text-align: center;
-  }
-  .tela-inicial .icone { font-size: 3rem; margin-bottom: 16px; opacity: 0.3; }
-  .tela-inicial h2 { color: var(--azul); font-size: 1.1rem; margin-bottom: 8px; }
-  .tela-inicial p  { color: var(--texto-suave); font-size: 0.88rem; }
-
-  /* PAINEL MUNICÍPIO */
-  .painel { display: none; }
-  .painel.ativo { display: block; }
-
-  /* CARDS RESUMO */
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px; margin-bottom: 24px;
-  }
-  .card {
-    background: var(--branco); border-radius: 10px;
+  .card-perfil {
+    background: var(--branco);
+    border-radius: 16px;
     border: 1px solid var(--borda);
-    padding: 14px 16px;
-  }
-  .card label { display: block; font-size: 0.72rem; color: var(--texto-suave); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
-  .card .valor { font-size: 1.5rem; font-weight: 700; color: var(--azul); }
-  .card .valor.ambar { color: var(--ambar); }
-  .card .valor.verde { color: var(--verde-tx); }
-
-  /* TÍTULO SEÇÃO */
-  .sec-titulo {
-    font-size: 0.72rem; font-weight: 700; color: var(--texto-suave);
-    text-transform: uppercase; letter-spacing: 1px;
-    margin-bottom: 10px; padding-bottom: 6px;
-    border-bottom: 2px solid var(--ambar); display: inline-block;
+    box-shadow: 0 4px 24px rgba(26,42,74,0.10);
+    padding: 40px 48px;
+    max-width: 520px; width: 100%;
+    text-align: center;
   }
 
-  /* COMPOSIÇÃO */
-  .composicao {
-    background: var(--branco); border-radius: 10px;
-    border: 1px solid var(--borda); padding: 16px;
-    margin-bottom: 24px;
+  .foto-wrap {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    border: 4px solid var(--ambar);
+    box-shadow: 0 2px 12px rgba(26,42,74,0.15);
   }
-  .comp-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-  .comp-chip {
+  .foto-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+  .nome {
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--azul); margin-bottom: 4px;
+  }
+  .cargo {
+    font-size: 0.82rem; color: var(--ambar);
+    font-weight: 600; letter-spacing: 0.5px;
+    margin-bottom: 20px;
+  }
+
+  .bio {
+    list-style: none;
+    margin-bottom: 28px;
+    text-align: left;
+    border-top: 1px solid var(--borda);
+    padding-top: 16px;
+  }
+  .bio li {
+    font-size: 0.84rem; color: var(--texto-suave);
+    padding: 6px 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .bio li::before { content: "▸"; color: var(--ambar); font-size: 0.8rem; margin-top: 1px; flex-shrink: 0; }
+
+  .botoes { display: flex; flex-direction: column; gap: 12px; }
+
+  .btn {
+    display: block; width: 100%;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 0.95rem; font-weight: 700;
+    text-decoration: none; cursor: pointer;
+    border: none; transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn-ativo {
     background: var(--azul); color: #fff;
-    border-radius: 6px; padding: 6px 12px;
-    font-size: 0.8rem; font-weight: 600;
+    box-shadow: 0 2px 8px rgba(26,42,74,0.18);
   }
-  .comp-chip span { color: var(--ambar); margin-left: 4px; }
+  .btn-ativo:hover { background: #243d6e; transform: translateY(-1px); }
+  .btn-desabilitado {
+    background: #e9ecef; color: #adb5bd;
+    cursor: not-allowed;
+  }
+  .btn-desabilitado small { display: block; font-size: 0.72rem; font-weight: 400; margin-top: 2px; }
 
-  /* TABELA */
-  .tabela-wrap {
-    background: var(--branco); border-radius: 10px;
-    border: 1px solid var(--borda); overflow: hidden;
-    margin-bottom: 24px;
-  }
-  .tabela-header {
-    padding: 14px 16px;
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
-  }
-  .filtro-wrap { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .filtro-wrap input {
-    border: 1px solid var(--borda); border-radius: 6px;
-    padding: 6px 10px; font-size: 0.82rem; color: var(--texto);
-    outline: none; width: 180px;
-  }
-  .filtro-wrap input:focus { border-color: var(--azul); }
-  .btn-filtro {
-    background: none; border: 1px solid var(--borda);
-    border-radius: 6px; padding: 5px 10px;
-    font-size: 0.78rem; cursor: pointer; color: var(--texto-suave);
-    transition: all 0.15s;
-  }
-  .btn-filtro.ativo, .btn-filtro:hover { background: var(--azul); color: #fff; border-color: var(--azul); }
-
-  table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
-  thead th {
-    background: var(--azul); color: #fff;
-    padding: 10px 12px; text-align: left;
-    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px;
-    border-bottom: 2px solid var(--ambar);
-    white-space: nowrap;
-  }
-  thead th:first-child { width: 48px; text-align: center; }
-  thead th:nth-child(4) { text-align: center; }
-  thead th:last-child  { text-align: center; }
-
-  tbody tr { border-bottom: 1px solid var(--borda); transition: background 0.1s; }
-  tbody tr:hover { background: #f0f4f8; }
-  tbody tr.eleito { background: var(--verde-bg); }
-  tbody tr.eleito:hover { background: #c3e6cb; }
-  tbody tr.separador td { border-bottom: 3px solid var(--ambar); }
-
-  td { padding: 8px 12px; }
-  td:first-child { text-align: center; color: var(--texto-suave); font-size: 0.78rem; font-weight: 600; }
-  td:nth-child(4) { text-align: center; font-weight: 600; }
-  td:last-child  { text-align: center; }
-
-  .nome-eleito { font-weight: 700; color: var(--verde-tx); }
-  .partido-pill {
-    display: inline-block; background: #eef2f7; color: var(--azul);
-    border-radius: 4px; padding: 2px 7px; font-size: 0.73rem; font-weight: 600;
-  }
-  .sit-eleito {
-    background: var(--verde-bg); color: var(--verde-tx);
-    border-radius: 4px; padding: 3px 8px;
-    font-size: 0.73rem; font-weight: 700; white-space: nowrap;
-  }
-  .sit-suplente {
-    color: var(--texto-suave); font-size: 0.78rem;
-  }
-
-  /* RODAPÉ */
   footer {
     background: var(--azul); border-top: 3px solid var(--ambar);
     color: #7a9cc0; font-size: 0.72rem; text-align: center;
@@ -193,27 +111,9 @@
   }
   footer strong { color: var(--ambar); }
 
-  /* MOBILE */
-  @media (max-width: 700px) {
-    .container { flex-direction: column; }
-    aside { width: 100%; min-width: 0; padding: 12px 0; }
-    aside h2 { padding: 0 16px 10px; }
-    .mun-lista { display: flex; flex-direction: column; padding: 0; gap: 0; }
-    .mun-btn {
-      white-space: normal; padding: 12px 16px;
-      border-left: 3px solid transparent;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      border-radius: 0;
-      background: none;
-      font-size: 0.92rem;
-    }
-    .mun-btn small { display: block; }
-    .mun-btn.ativo { border-left-color: var(--ambar); background: rgba(232,160,32,0.12); }
-    main { padding: 16px; }
-    .cards { grid-template-columns: repeat(2, 1fr); }
-    .filtro-wrap input { width: 140px; }
-    thead th:nth-child(3) { display: none; }
-    td:nth-child(3) { display: none; }
+  @media (max-width: 600px) {
+    .card-perfil { padding: 28px 20px; }
+    .nome { font-size: 1.2rem; }
   }
 </style>
 </head>
@@ -221,401 +121,39 @@
 
 <header>
   <div>
-    <h1>Eleições Municipais 2024 — Vereadores</h1>
-    <p>Norte Fluminense · Rio de Janeiro</p>
+    <h1>wabreu.com</h1>
+    <p>Consultoria · Inteligência Política · Dados Eleitorais</p>
   </div>
   <div class="badge">SPGBTT / Gab. Dep. Carla Machado (ALERJ)</div>
 </header>
 
-<div class="container">
+<div class="hero">
+  <div class="card-perfil">
 
-  <aside>
-    <h2>Municípios</h2>
-    <div class="mun-lista">
-      <button class="mun-btn" onclick="mostrar('bom-jesus')">
-        Bom Jesus do Itabapoana
-        <small>9 vagas · 120 candidatos</small>
-      </button>
-      <button class="mun-btn" onclick="mostrar('cardoso-moreira')">
-        Cardoso Moreira
-        <small>9 vagas · 85 candidatos</small>
-      </button>
-      <button class="mun-btn" onclick="mostrar('conceicao-macabu')">
-        Conceição de Macabu
-        <small>11 vagas · 137 candidatos</small>
-      </button>
-      <button class="mun-btn" onclick="mostrar('itaperuna')">
-        Itaperuna
-        <small>13 vagas · 201 candidatos</small>
-      </button>
-      <button class="mun-btn" onclick="mostrar('macae')">
-        Macaé
-        <small>17 vagas · 247 candidatos</small>
-      </button>
-      <button class="mun-btn" onclick="mostrar('sao-fidelis')">
-        São Fidélis
-        <small>9 vagas · 136 candidatos</small>
+    <div class="foto-wrap">
+      <img src="data:image/jpeg;base64,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" alt="Wellington Abreu">
+    </div>
+
+    <div class="nome">Wellington Abreu</div>
+    <div class="cargo">Consultor em Petróleo, Gás &amp; Royalties · Prompt Artist</div>
+
+    <ul class="bio">
+      <li>Técnico em Informática Industrial — ETFC</li>
+      <li>Analista de Sistemas — Estácio de Sá</li>
+      <li>Cursando Pós-Graduação em Petróleo e Gás — FALL</li>
+      <li>Cursando MBA em Hidrogênio Verde e Transição Energética — IPOG</li>
+      <li>Consultor em Royalties e legislação relacionados a Petróleo e Gás</li>
+    </ul>
+
+    <div class="botoes">
+      <a href="index.html" class="btn btn-ativo">🗳️ Resultado Eleições 2024</a>
+      <button class="btn btn-desabilitado" disabled>
+        🗳️ Resultado Eleições 2022
+        <small>Em breve</small>
       </button>
     </div>
-  </aside>
 
-  <main>
-
-    <!-- TELA INICIAL -->
-    <div class="tela-inicial" id="tela-inicial">
-      <div class="icone">🗳️</div>
-      <h2>Selecione um município</h2>
-      <p>Escolha um município na lista ao lado<br>para visualizar os resultados eleitorais.</p>
-    </div>
-
-    <!-- ═══════════════════════════════════════ BOM JESUS ═══ -->
-    <div class="painel" id="painel-bom-jesus">
-      <div class="cards">
-        <div class="card"><label>Município</label><div class="valor" style="font-size:1rem;">Bom Jesus do Itabapoana</div></div>
-        <div class="card"><label>Vagas</label><div class="valor ambar">9</div></div>
-        <div class="card"><label>Candidatos</label><div class="valor">120</div></div>
-        <div class="card"><label>+ Votado</label><div class="valor verde" style="font-size:0.9rem;">Léo Xambão</div></div>
-      </div>
-      <div class="composicao">
-        <div class="sec-titulo">Composição da Câmara</div>
-        <div class="comp-grid">
-          <div class="comp-chip">PL<span>5</span></div>
-          <div class="comp-chip">PP<span>3</span></div>
-          <div class="comp-chip">UNIÃO<span>2</span></div>
-          <div class="comp-chip">REPUBLICANOS<span>1</span></div>
-        </div>
-      </div>
-      <div class="tabela-wrap">
-        <div class="tabela-header">
-          <div class="sec-titulo" style="margin:0">Candidatos — ordem de votação</div>
-          <div class="filtro-wrap">
-            <input type="text" placeholder="Buscar candidato..." oninput="filtrar(this,'tb-bom-jesus')">
-            <button class="btn-filtro ativo" onclick="filtrarSit(this,'tb-bom-jesus','todos')">Todos</button>
-            <button class="btn-filtro" onclick="filtrarSit(this,'tb-bom-jesus','eleito')">Eleitos</button>
-          </div>
-        </div>
-        <div style="overflow-x:auto">
-        <table id="tb-bom-jesus">
-          <thead><tr><th>Pos.</th><th>Candidato</th><th>Partido</th><th>Votos</th><th>Situação</th></tr></thead>
-          <tbody>
-            <tr class="eleito"><td>1</td><td class="nome-eleito">Léo Xambão</td><td><span class="partido-pill">PL</span></td><td>1.565</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>2</td><td class="nome-eleito">Marcelinho Vieira</td><td><span class="partido-pill">PP</span></td><td>1.324</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>3</td><td class="nome-eleito">Sergio Crizostomo</td><td><span class="partido-pill">PP</span></td><td>1.215</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>4</td><td class="nome-eleito">Zé Luiz</td><td><span class="partido-pill">PP</span></td><td>1.088</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>5</td><td class="nome-eleito">Maycon Chaves</td><td><span class="partido-pill">PL</span></td><td>1.005</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>6</td><td class="nome-eleito">Haroldo Garcia</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>932</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>7</td><td class="nome-eleito">Moacir da Figueiredo</td><td><span class="partido-pill">PL</span></td><td>897</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>8</td><td class="nome-eleito">Samuel Júnior</td><td><span class="partido-pill">PP</span></td><td>768</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito separador"><td>9</td><td class="nome-eleito">Pedro Renato</td><td><span class="partido-pill">UNIÃO</span></td><td>765</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr><td>10</td><td>Clerinho da Soledade</td><td><span class="partido-pill">PL</span></td><td>694</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>11</td><td>Toinzinho da Saúde</td><td><span class="partido-pill">PL</span></td><td>630</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>12</td><td>Acácio Teixeira</td><td><span class="partido-pill">PP</span></td><td>571</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>13</td><td>Fabrício Cadei</td><td><span class="partido-pill">UNIÃO</span></td><td>507</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>14</td><td>Clovis da Farmácia</td><td><span class="partido-pill">PL</span></td><td>502</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>15</td><td>Clebinho Reis</td><td><span class="partido-pill">PP</span></td><td>467</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>16</td><td>Eduardo Paiva</td><td><span class="partido-pill">PL</span></td><td>441</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>17</td><td>Tiago Bom Jardim</td><td><span class="partido-pill">PSB</span></td><td>347</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>18</td><td>Tiago do Projeto</td><td><span class="partido-pill">UNIÃO</span></td><td>342</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>19</td><td>Maurício Zanon</td><td><span class="partido-pill">PL</span></td><td>339</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>20</td><td>Arquimedes Bombeiro</td><td><span class="partido-pill">UNIÃO</span></td><td>330</td><td><span class="sit-suplente">Suplente</span></td></tr>
-          </tbody>
-        </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════ CARDOSO MOREIRA ═══ -->
-    <div class="painel" id="painel-cardoso-moreira">
-      <div class="cards">
-        <div class="card"><label>Município</label><div class="valor" style="font-size:1rem;">Cardoso Moreira</div></div>
-        <div class="card"><label>Vagas</label><div class="valor ambar">9</div></div>
-        <div class="card"><label>Candidatos</label><div class="valor">85</div></div>
-        <div class="card"><label>+ Votado</label><div class="valor verde" style="font-size:0.9rem;">Jô do Pires</div></div>
-      </div>
-      <div class="composicao">
-        <div class="sec-titulo">Composição da Câmara</div>
-        <div class="comp-grid">
-          <div class="comp-chip">PP<span>3</span></div>
-          <div class="comp-chip">UNIÃO<span>2</span></div>
-          <div class="comp-chip">PDT<span>2</span></div>
-          <div class="comp-chip">SOLIDARIEDADE<span>1</span></div>
-          <div class="comp-chip">REPUBLICANOS<span>1</span></div>
-        </div>
-      </div>
-      <div class="tabela-wrap">
-        <div class="tabela-header">
-          <div class="sec-titulo" style="margin:0">Candidatos — ordem de votação</div>
-          <div class="filtro-wrap">
-            <input type="text" placeholder="Buscar candidato..." oninput="filtrar(this,'tb-cardoso')">
-            <button class="btn-filtro ativo" onclick="filtrarSit(this,'tb-cardoso','todos')">Todos</button>
-            <button class="btn-filtro" onclick="filtrarSit(this,'tb-cardoso','eleito')">Eleitos</button>
-          </div>
-        </div>
-        <div style="overflow-x:auto">
-        <table id="tb-cardoso">
-          <thead><tr><th>Pos.</th><th>Candidato</th><th>Partido</th><th>Votos</th><th>Situação</th></tr></thead>
-          <tbody>
-            <tr class="eleito"><td>1</td><td class="nome-eleito">Jô do Pires</td><td><span class="partido-pill">UNIÃO</span></td><td>788</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>2</td><td class="nome-eleito">Nildinho Motos</td><td><span class="partido-pill">SOLIDARIEDADE</span></td><td>629</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>3</td><td class="nome-eleito">Danilo Cozendey</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>593</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>4</td><td class="nome-eleito">Edinho de Mattos</td><td><span class="partido-pill">PP</span></td><td>578</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>5</td><td class="nome-eleito">Alexandre Papaleos</td><td><span class="partido-pill">UNIÃO</span></td><td>527</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>6</td><td class="nome-eleito">Valquírio Jóia</td><td><span class="partido-pill">PDT</span></td><td>472</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>7</td><td class="nome-eleito">Leno Moraes</td><td><span class="partido-pill">PP</span></td><td>454</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>8</td><td class="nome-eleito">Nézio Casanova</td><td><span class="partido-pill">PP</span></td><td>447</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito separador"><td>9</td><td class="nome-eleito">Medeirinho</td><td><span class="partido-pill">PDT</span></td><td>436</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr><td>10</td><td>Lilinho da Oficina</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>400</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>11</td><td>Cesão do Transporte</td><td><span class="partido-pill">SOLIDARIEDADE</span></td><td>398</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>12</td><td>Serginho Maia</td><td><span class="partido-pill">PL</span></td><td>380</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>13</td><td>Abelzinho</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>330</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>14</td><td>Henrique Codeço</td><td><span class="partido-pill">UNIÃO</span></td><td>311</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>15</td><td>Dra. Ângela Campos</td><td><span class="partido-pill">SOLIDARIEDADE</span></td><td>284</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>16</td><td>Olavo Neves</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>255</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>17</td><td>Conceição Viter</td><td><span class="partido-pill">PP</span></td><td>254</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>18</td><td>Cal</td><td><span class="partido-pill">PDT</span></td><td>251</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>19</td><td>Andrinho do Hortifruti</td><td><span class="partido-pill">PL</span></td><td>222</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>20</td><td>Luiz Docinho</td><td><span class="partido-pill">PDT</span></td><td>163</td><td><span class="sit-suplente">Suplente</span></td></tr>
-          </tbody>
-        </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════ CONCEIÇÃO DE MACABU ═══ -->
-    <div class="painel" id="painel-conceicao-macabu">
-      <div class="cards">
-        <div class="card"><label>Município</label><div class="valor" style="font-size:1rem;">Conceição de Macabu</div></div>
-        <div class="card"><label>Vagas</label><div class="valor ambar">11</div></div>
-        <div class="card"><label>Candidatos</label><div class="valor">137</div></div>
-        <div class="card"><label>+ Votada</label><div class="valor verde" style="font-size:0.9rem;">Nathalia Braga</div></div>
-      </div>
-      <div class="composicao">
-        <div class="sec-titulo">Composição da Câmara</div>
-        <div class="comp-grid">
-          <div class="comp-chip">CIDADANIA<span>4</span></div>
-          <div class="comp-chip">UNIÃO<span>2</span></div>
-          <div class="comp-chip">SOLIDARIEDADE<span>2</span></div>
-          <div class="comp-chip">PP<span>1</span></div>
-          <div class="comp-chip">PSD<span>1</span></div>
-          <div class="comp-chip">PDT<span>1</span></div>
-        </div>
-      </div>
-      <div class="tabela-wrap">
-        <div class="tabela-header">
-          <div class="sec-titulo" style="margin:0">Candidatos — ordem de votação</div>
-          <div class="filtro-wrap">
-            <input type="text" placeholder="Buscar candidato..." oninput="filtrar(this,'tb-macabu')">
-            <button class="btn-filtro ativo" onclick="filtrarSit(this,'tb-macabu','todos')">Todos</button>
-            <button class="btn-filtro" onclick="filtrarSit(this,'tb-macabu','eleito')">Eleitos</button>
-          </div>
-        </div>
-        <div style="overflow-x:auto">
-        <table id="tb-macabu">
-          <thead><tr><th>Pos.</th><th>Candidato</th><th>Partido</th><th>Votos</th><th>Situação</th></tr></thead>
-          <tbody>
-            <tr class="eleito"><td>1</td><td class="nome-eleito">Nathalia Braga</td><td><span class="partido-pill">CIDADANIA</span></td><td>658</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>2</td><td class="nome-eleito">Toninho da Saúde</td><td><span class="partido-pill">CIDADANIA</span></td><td>595</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>3</td><td class="nome-eleito">Filipe Felix</td><td><span class="partido-pill">CIDADANIA</span></td><td>570</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>4</td><td class="nome-eleito">Rafinha da Saúde</td><td><span class="partido-pill">UNIÃO</span></td><td>549</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>5</td><td class="nome-eleito">Guta</td><td><span class="partido-pill">CIDADANIA</span></td><td>488</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>6</td><td class="nome-eleito">Neto</td><td><span class="partido-pill">CIDADANIA</span></td><td>473</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>7</td><td class="nome-eleito">Claudinho</td><td><span class="partido-pill">CIDADANIA</span></td><td>437</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>8</td><td class="nome-eleito">Gaúcho</td><td><span class="partido-pill">PP</span></td><td>402</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>9</td><td class="nome-eleito">Coutinho Ramalho</td><td><span class="partido-pill">UNIÃO</span></td><td>380</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>10</td><td class="nome-eleito">Samuel da Música</td><td><span class="partido-pill">SOLIDARIEDADE</span></td><td>375</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito separador"><td>11</td><td class="nome-eleito">Pedro Henrique</td><td><span class="partido-pill">PDT</span></td><td>369</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr><td>12</td><td>Tião da Usina</td><td><span class="partido-pill">SOLIDARIEDADE</span></td><td>332</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>13</td><td>Luiz da Tribo</td><td><span class="partido-pill">UNIÃO</span></td><td>327</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>14</td><td>Jonathan Vasconcellos</td><td><span class="partido-pill">UNIÃO</span></td><td>326</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>15</td><td>Lucas Madureira</td><td><span class="partido-pill">PP</span></td><td>316</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>16</td><td>Sandro Daumas</td><td><span class="partido-pill">SOLIDARIEDADE</span></td><td>287</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>17</td><td>Tcharles</td><td><span class="partido-pill">SOLIDARIEDADE</span></td><td>284</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>18</td><td>Dhal</td><td><span class="partido-pill">PSD</span></td><td>271</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>19</td><td>Tico</td><td><span class="partido-pill">PSD</span></td><td>247</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>20</td><td>Nei do Esporte</td><td><span class="partido-pill">PSB</span></td><td>196</td><td><span class="sit-suplente">Suplente</span></td></tr>
-          </tbody>
-        </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════ ITAPERUNA ═══ -->
-    <div class="painel" id="painel-itaperuna">
-      <div class="cards">
-        <div class="card"><label>Município</label><div class="valor" style="font-size:1rem;">Itaperuna</div></div>
-        <div class="card"><label>Vagas</label><div class="valor ambar">13</div></div>
-        <div class="card"><label>Candidatos</label><div class="valor">201</div></div>
-        <div class="card"><label>+ Votada</label><div class="valor verde" style="font-size:0.9rem;">Sargento Cristiane</div></div>
-      </div>
-      <div class="composicao">
-        <div class="sec-titulo">Composição da Câmara</div>
-        <div class="comp-grid">
-          <div class="comp-chip">UNIÃO<span>2</span></div>
-          <div class="comp-chip">PSD<span>2</span></div>
-          <div class="comp-chip">MOBILIZA<span>2</span></div>
-          <div class="comp-chip">PL<span>2</span></div>
-          <div class="comp-chip">DC<span>2</span></div>
-          <div class="comp-chip">REPUBLICANOS<span>1</span></div>
-          <div class="comp-chip">PP<span>1</span></div>
-          <div class="comp-chip">SOLIDARIEDADE<span>1</span></div>
-        </div>
-      </div>
-      <div class="tabela-wrap">
-        <div class="tabela-header">
-          <div class="sec-titulo" style="margin:0">Candidatos — ordem de votação</div>
-          <div class="filtro-wrap">
-            <input type="text" placeholder="Buscar candidato..." oninput="filtrar(this,'tb-itaperuna')">
-            <button class="btn-filtro ativo" onclick="filtrarSit(this,'tb-itaperuna','todos')">Todos</button>
-            <button class="btn-filtro" onclick="filtrarSit(this,'tb-itaperuna','eleito')">Eleitos</button>
-          </div>
-        </div>
-        <div style="overflow-x:auto">
-        <table id="tb-itaperuna">
-          <thead><tr><th>Pos.</th><th>Candidato</th><th>Partido</th><th>Votos</th><th>Situação</th></tr></thead>
-          <tbody>
-            <tr class="eleito"><td>1</td><td class="nome-eleito">Sargento Cristiane</td><td><span class="partido-pill">UNIÃO</span></td><td>1.821</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>2</td><td class="nome-eleito">Eduardo do Toldo</td><td><span class="partido-pill">PSD</span></td><td>1.656</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>3</td><td class="nome-eleito">Paulo Cesar Contador</td><td><span class="partido-pill">PSD</span></td><td>1.593</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>4</td><td class="nome-eleito">Jeffinho Boa Ventura</td><td><span class="partido-pill">UNIÃO</span></td><td>1.494</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>5</td><td class="nome-eleito">Jeffinho Enfermeiro</td><td><span class="partido-pill">MOBILIZA</span></td><td>1.433</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>6</td><td class="nome-eleito">Wellington do Guarita</td><td><span class="partido-pill">PL</span></td><td>1.378</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>7</td><td class="nome-eleito">Barata da Saúde</td><td><span class="partido-pill">SOLIDARIEDADE</span></td><td>1.374</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>8</td><td class="nome-eleito">Wendel Tatu</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>1.328</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>9</td><td class="nome-eleito">Elia Cruz</td><td><span class="partido-pill">PL</span></td><td>1.285</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>10</td><td class="nome-eleito">Ademir Pessanha</td><td><span class="partido-pill">MOBILIZA</span></td><td>1.212</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>11</td><td class="nome-eleito">Vivi Dentista</td><td><span class="partido-pill">PP</span></td><td>1.131</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>12</td><td class="nome-eleito">Carlinhos Peixeiro</td><td><span class="partido-pill">DC</span></td><td>1.033</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito separador"><td>13</td><td class="nome-eleito">Magno Barbeiro</td><td><span class="partido-pill">DC</span></td><td>872</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr><td>14</td><td>Marquinho de Retiro</td><td><span class="partido-pill">PSD</span></td><td>1.535</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>15</td><td>Nandi</td><td><span class="partido-pill">UNIÃO</span></td><td>1.224</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>16</td><td>Adenilson Zacharias</td><td><span class="partido-pill">PP</span></td><td>1.073</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>17</td><td>Sinei Torresmo</td><td><span class="partido-pill">PL</span></td><td>1.035</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>18</td><td>Professor França</td><td><span class="partido-pill">MOBILIZA</span></td><td>991</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>19</td><td>Glauber Bastos</td><td><span class="partido-pill">PP</span></td><td>953</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>20</td><td>Antonio Pedro Zoreia</td><td><span class="partido-pill">MOBILIZA</span></td><td>915</td><td><span class="sit-suplente">Suplente</span></td></tr>
-          </tbody>
-        </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════ MACAÉ ═══ -->
-    <div class="painel" id="painel-macae">
-      <div class="cards">
-        <div class="card"><label>Município</label><div class="valor" style="font-size:1rem;">Macaé</div></div>
-        <div class="card"><label>Vagas</label><div class="valor ambar">17</div></div>
-        <div class="card"><label>Candidatos</label><div class="valor">247</div></div>
-        <div class="card"><label>+ Votado</label><div class="valor verde" style="font-size:0.9rem;">Cesinha Com Todo Gás</div></div>
-      </div>
-      <div class="composicao">
-        <div class="sec-titulo">Composição da Câmara</div>
-        <div class="comp-grid">
-          <div class="comp-chip">CIDADANIA<span>7</span></div>
-          <div class="comp-chip">MDB<span>2</span></div>
-          <div class="comp-chip">REPUBLICANOS<span>2</span></div>
-          <div class="comp-chip">PV<span>2</span></div>
-          <div class="comp-chip">AGIR<span>1</span></div>
-          <div class="comp-chip">PSDB<span>1</span></div>
-          <div class="comp-chip">PT<span>1</span></div>
-          <div class="comp-chip">SOLIDARIEDADE<span>1</span></div>
-        </div>
-      </div>
-      <div class="tabela-wrap">
-        <div class="tabela-header">
-          <div class="sec-titulo" style="margin:0">Candidatos — ordem de votação</div>
-          <div class="filtro-wrap">
-            <input type="text" placeholder="Buscar candidato..." oninput="filtrar(this,'tb-macae')">
-            <button class="btn-filtro ativo" onclick="filtrarSit(this,'tb-macae','todos')">Todos</button>
-            <button class="btn-filtro" onclick="filtrarSit(this,'tb-macae','eleito')">Eleitos</button>
-          </div>
-        </div>
-        <div style="overflow-x:auto">
-        <table id="tb-macae">
-          <thead><tr><th>Pos.</th><th>Candidato</th><th>Partido</th><th>Votos</th><th>Situação</th></tr></thead>
-          <tbody>
-            <tr class="eleito"><td>1</td><td class="nome-eleito">Cesinha Com Todo Gás</td><td><span class="partido-pill">CIDADANIA</span></td><td>5.476</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>2</td><td class="nome-eleito">Tico Jardim</td><td><span class="partido-pill">CIDADANIA</span></td><td>4.467</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>3</td><td class="nome-eleito">Alan Mansur</td><td><span class="partido-pill">CIDADANIA</span></td><td>3.733</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>4</td><td class="nome-eleito">Manu Rezende</td><td><span class="partido-pill">MDB</span></td><td>3.206</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>5</td><td class="nome-eleito">Filipe Machado</td><td><span class="partido-pill">CIDADANIA</span></td><td>3.198</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>6</td><td class="nome-eleito">Edson Chiquini</td><td><span class="partido-pill">CIDADANIA</span></td><td>3.084</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>7</td><td class="nome-eleito">Professor Michel</td><td><span class="partido-pill">CIDADANIA</span></td><td>3.046</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>8</td><td class="nome-eleito">Denis Madureira</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>3.045</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>9</td><td class="nome-eleito">Rond Macaé</td><td><span class="partido-pill">PSDB</span></td><td>3.038</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>10</td><td class="nome-eleito">Luciano Diniz</td><td><span class="partido-pill">CIDADANIA</span></td><td>2.956</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>11</td><td class="nome-eleito">Leandra Lopes</td><td><span class="partido-pill">PT</span></td><td>2.773</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>12</td><td class="nome-eleito">Paulista</td><td><span class="partido-pill">SOLIDARIEDADE</span></td><td>2.572</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>13</td><td class="nome-eleito">Amaro Luiz</td><td><span class="partido-pill">PV</span></td><td>1.831</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>14</td><td class="nome-eleito">Dra. Mayara Rezende</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>1.827</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>15</td><td class="nome-eleito">Ricardo Salgado</td><td><span class="partido-pill">MDB</span></td><td>1.820</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>16</td><td class="nome-eleito">Marvel</td><td><span class="partido-pill">PV</span></td><td>1.743</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito separador"><td>17</td><td class="nome-eleito">Liomar Queiroz</td><td><span class="partido-pill">AGIR</span></td><td>1.612</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr><td>18</td><td>Rafael Amorim</td><td><span class="partido-pill">CIDADANIA</span></td><td>2.453</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>19</td><td>Iza Vicente</td><td><span class="partido-pill">REDE</span></td><td>2.372</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>20</td><td>Vicente da Fox</td><td><span class="partido-pill">SOLIDARIEDADE</span></td><td>2.311</td><td><span class="sit-suplente">Suplente</span></td></tr>
-          </tbody>
-        </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════ SÃO FIDÉLIS ═══ -->
-    <div class="painel" id="painel-sao-fidelis">
-      <div class="cards">
-        <div class="card"><label>Município</label><div class="valor" style="font-size:1rem;">São Fidélis</div></div>
-        <div class="card"><label>Vagas</label><div class="valor ambar">9</div></div>
-        <div class="card"><label>Candidatos</label><div class="valor">136</div></div>
-        <div class="card"><label>+ Votado</label><div class="valor verde" style="font-size:0.9rem;">Rogerinho</div></div>
-      </div>
-      <div class="composicao">
-        <div class="sec-titulo">Composição da Câmara</div>
-        <div class="comp-grid">
-          <div class="comp-chip">PL<span>3</span></div>
-          <div class="comp-chip">MDB<span>3</span></div>
-          <div class="comp-chip">REPUBLICANOS<span>2</span></div>
-          <div class="comp-chip">PP<span>1</span></div>
-        </div>
-      </div>
-      <div class="tabela-wrap">
-        <div class="tabela-header">
-          <div class="sec-titulo" style="margin:0">Candidatos — ordem de votação</div>
-          <div class="filtro-wrap">
-            <input type="text" placeholder="Buscar candidato..." oninput="filtrar(this,'tb-fidelis')">
-            <button class="btn-filtro ativo" onclick="filtrarSit(this,'tb-fidelis','todos')">Todos</button>
-            <button class="btn-filtro" onclick="filtrarSit(this,'tb-fidelis','eleito')">Eleitos</button>
-          </div>
-        </div>
-        <div style="overflow-x:auto">
-        <table id="tb-fidelis">
-          <thead><tr><th>Pos.</th><th>Candidato</th><th>Partido</th><th>Votos</th><th>Situação</th></tr></thead>
-          <tbody>
-            <tr class="eleito"><td>1</td><td class="nome-eleito">Rogerinho</td><td><span class="partido-pill">PL</span></td><td>1.936</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>2</td><td class="nome-eleito">Alessandro da Farmácia</td><td><span class="partido-pill">PL</span></td><td>1.611</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>3</td><td class="nome-eleito">Marcelinho</td><td><span class="partido-pill">PL</span></td><td>1.607</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>4</td><td class="nome-eleito">Amauri</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>1.261</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>5</td><td class="nome-eleito">Betinho Fratani</td><td><span class="partido-pill">PP</span></td><td>1.221</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>6</td><td class="nome-eleito">Chico de Dadal</td><td><span class="partido-pill">MDB</span></td><td>1.214</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>7</td><td class="nome-eleito">Zé Guilherme</td><td><span class="partido-pill">MDB</span></td><td>1.189</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito"><td>8</td><td class="nome-eleito">Mayky de Jesus</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>1.071</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr class="eleito separador"><td>9</td><td class="nome-eleito">Vinicius de Pureza</td><td><span class="partido-pill">MDB</span></td><td>961</td><td><span class="sit-eleito">✔ ELEITO</span></td></tr>
-            <tr><td>10</td><td>John de Efinho</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>950</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>11</td><td>Rodrigo Santana</td><td><span class="partido-pill">UNIÃO</span></td><td>887</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>12</td><td>Erick Lopes</td><td><span class="partido-pill">PRD</span></td><td>856</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>13</td><td>Léo</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>855</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>14</td><td>Leandro do Trenzinho</td><td><span class="partido-pill">UNIÃO</span></td><td>760</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>15</td><td>Renanzinho</td><td><span class="partido-pill">PRD</span></td><td>589</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>16</td><td>Oberlan Plouvier</td><td><span class="partido-pill">UNIÃO</span></td><td>581</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>17</td><td>Jefinho</td><td><span class="partido-pill">UNIÃO</span></td><td>373</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>18</td><td>Adriano Maia</td><td><span class="partido-pill">REPUBLICANOS</span></td><td>327</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>19</td><td>Jania de Ernesto Machado</td><td><span class="partido-pill">MDB</span></td><td>247</td><td><span class="sit-suplente">Suplente</span></td></tr>
-            <tr><td>20</td><td>Robinho do Gás</td><td><span class="partido-pill">PRD</span></td><td>195</td><td><span class="sit-suplente">Suplente</span></td></tr>
-          </tbody>
-        </table>
-        </div>
-      </div>
-    </div>
-
-  </main>
+  </div>
 </div>
 
 <footer>
@@ -624,34 +162,5 @@
   Prompt Artist: <strong>Wellington Abreu</strong> · Digital Mindset · Breaking Money
 </footer>
 
-<script>
-function mostrar(id) {
-  document.getElementById('tela-inicial').style.display = 'none';
-  document.querySelectorAll('.painel').forEach(p => p.classList.remove('ativo'));
-  document.querySelectorAll('.mun-btn').forEach(b => b.classList.remove('ativo'));
-  const painel = document.getElementById('painel-' + id);
-  if (painel) painel.classList.add('ativo');
-  event.currentTarget.classList.add('ativo');
-}
-
-function filtrar(input, tbId) {
-  const termo = input.value.toLowerCase();
-  const rows = document.getElementById(tbId).querySelectorAll('tbody tr');
-  rows.forEach(tr => {
-    const txt = tr.textContent.toLowerCase();
-    tr.style.display = txt.includes(termo) ? '' : 'none';
-  });
-}
-
-function filtrarSit(btn, tbId, modo) {
-  btn.closest('.filtro-wrap').querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('ativo'));
-  btn.classList.add('ativo');
-  const rows = document.getElementById(tbId).querySelectorAll('tbody tr');
-  rows.forEach(tr => {
-    if (modo === 'todos') tr.style.display = '';
-    else if (modo === 'eleito') tr.style.display = tr.classList.contains('eleito') ? '' : 'none';
-  });
-}
-</script>
 </body>
 </html>
